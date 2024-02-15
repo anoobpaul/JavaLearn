@@ -1,37 +1,37 @@
 
 public class MergeArray {
 
-    public void merge() {
-        System.out.println("inside the merge method");
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
 
-        int[] num1 = new int[] { 9, 5, 1, 4, 2 };
-        int[] num2 = new int[] { 2, 4, 6 };
+        int length = m + n - 1;
+        int p = m - 1;
+        int q = n - 1;
 
-        int l1 = num1.length;
-        int l2 = num2.length;
-        int l3 = l1 + l2;
-
-        int[] num3 = new int[l3];
-
-        for (int i = 0; i < l1; i++) {
-            num3[i] = num1[i];
+        while (p >= 0 && q >= 0) {
+            if (nums1[p] > nums2[q]) {
+                nums1[length] = nums1[p];
+                p--;
+            } else {
+                nums1[length] = nums2[q];
+                q--;
+            }
+            length--;
         }
-        for (int i = 0; i < l2; i++) {
-
-            num3[l1 + i] = num2[i];
-        }
-        System.out.println("Printing the merged array");
-
-        for (int i = 0; i < l3; i++) {
-            System.out.println(num3[i]);
+        while (q >= 0) {
+            nums1[length] = nums2[q];
+            q--;
+            length--;
         }
 
     }
 
     public static void main(String[] args) {
-
-        MergeArray mergeArray = new MergeArray();
-        mergeArray.merge();
+        MergeArray mergeArr = new MergeArray();
+        int[] nums1 = { 1, 2, 3, 0, 0 };
+        int m = 3;
+        int[] nums2 = { 5, 0, 3, 8, 9 };
+        int n = 3;
+        mergeArr.merge(nums1, m, nums2, n);
 
     }
 }
